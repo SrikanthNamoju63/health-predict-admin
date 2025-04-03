@@ -1,6 +1,7 @@
 // Load environment variables FIRST - at the VERY TOP
 require('dotenv').config({ path: __dirname + '/.env' });
-
+const express = require('express');
+const path = require('path');
 const app = require('./app');
 const http = require('http');
 
@@ -13,6 +14,17 @@ console.log('Environment Variables:', {
   MONGODB_URI: process.env.MONGODB_URI ? '*****' : 'MISSING',  // Mask the actual URI
   JWT_SECRET: process.env.JWT_SECRET ? '*****' : 'MISSING'
 });
+
+// Serve static files from the React app in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
+  // Handle SPA routing - return index.html for all routes
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
+}
 
 const server = http.createServer(app);
 
