@@ -1,0 +1,14 @@
+{
+  "name": "health-predict-admin",
+  "version": "1.0.0",
+  "description": "Admin panel for Health Predict pharmacy management system",
+  "scripts": {
+    "install": "npm install && cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build",
+    "start": "cd server && node server.js",
+    "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+} 
