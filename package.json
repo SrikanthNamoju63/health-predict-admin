@@ -4,7 +4,7 @@
   "description": "Admin panel for Health Predict pharmacy management system",
   "scripts": {
     "install": "npm install && cd client && npm install && cd ../server && npm install",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run build && mkdir -p ../src/client/dist && cp -r dist/* ../src/client/dist/",
     "start": "cd server && node server.js",
     "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\""
   },

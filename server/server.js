@@ -18,7 +18,8 @@ console.log('Environment Variables:', {
 // Serve static files from the React app in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
+  const clientBuildPath = path.join(process.cwd(), 'src', 'client', 'dist');
+  console.log('Current working directory:', process.cwd());
   console.log('Client build path:', clientBuildPath);
   app.use(express.static(clientBuildPath));
 
